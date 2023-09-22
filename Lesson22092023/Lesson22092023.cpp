@@ -89,36 +89,11 @@ public:
 
 	void FileTransfer() {
 		ofstream newFile("coordinates.txt");
-		newFile << "X:" << _x << " Y:" << _y << " Z:"<<_z;
-		newFile.close();
-		system("pause");
-	}
-
-	void FileOpen(const string& fileName) {
-		char text[100];
-		ifstream currentFile(fileName);
-
-		currentFile.getline(text, 100);
-		currentFile.close();
-		/*for (int i = 0; i < text.length; i++)
-		{
-
-		}*/
-		for (int i = 0; i < 100; i++)
-		{
-			if (text[i] == ' ') {
-				cout << endl;
-			}
-			else if (text[i] == '\0') {
-				break;
-			}
-			else {
-				cout << text[i];
-			}
+		if (newFile.is_open()) {
+			newFile << "X:" << _x << " Y:" << _y << " Z:" << _z;
+			newFile.close();
 		}
-		cout << endl;
-		system("pause");
-	}//Это подсмотрел, но понимаю, что происходит
+	}
 };
 
 int main() {
@@ -126,6 +101,5 @@ int main() {
 	dot newDot;
 	newDot.SetData(1, 2, 3);
 	newDot.FileTransfer();
-	newDot.FileOpen("coordinates.txt");
 	
 }
